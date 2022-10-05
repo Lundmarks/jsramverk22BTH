@@ -5,3 +5,4 @@ import CKEditor from '@ckeditor/ckeditor5-vue'
 
 createApp(App).use(CKEditor).mount('#app')
 // createApp(App).use(CKEditor, Nav).mount('#app')
+
