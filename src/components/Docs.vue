@@ -1,52 +1,42 @@
 <template>
-  <h1> DOCS </h1>
+  <h1> Saved documents</h1>
+  <ul>
+     <li v-for="doc in docs" v-bind:key="doc._id">
+        {{ doc.name }}
+      </li>
+  </ul>
 </template>
 
 
 <script>
 // import Nav from "vue-nav-ui"
-// import docs from "../../models/docs"
 
 export default {
     // name: 'Docs',
     components: {
       // baseUrl: "https://jsramverk-dottxt.azurewebsites.net/",
     },
-    methods: {
-        getAllDocs: async function getAllDocs() {
-          console.log("GETALLDOCS");
-          console.log(window.location.href);
-          // const response = await fetch
-        }
-    },
+    mounted() {
+    this.getDocs();
+  },
+  methods: {
+    getDocs() {
+      let that = this;
+      fetch("https://jsramverk-dottxt.azurewebsites.net/docs")
+      .then(function(response) {
+          return response.json();
+      })
+      .then(function(result) {
+        // console.log("FETCHED FROM API");
+        // console.log(result.data);
+        that.docs = result.data;
+      });
+    }
+  },
     data() {
         return {
-          // todo
+          docs: null,
         };
     }
 }
 </script>
-
-<!-- <script>
-export default {
-  data() {
-    return {
-      docs: [],
-    };
-  },
-
-  methods: {
-    async getData() {
-      try {
-        const response = await this.$http.get(
-          "http://jsonplaceholder.typicode.com/posts"
-        );
-        // JSON responses are automatically parsed.
-        this.posts = response.data;
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
-};
-</script> -->

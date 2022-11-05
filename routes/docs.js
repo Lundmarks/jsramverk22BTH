@@ -18,6 +18,7 @@ router.get(
     }
 );
 
+// POST
 router.post(
     "/",
     async (req, res) => {
@@ -30,6 +31,19 @@ router.post(
         
         return res.status(201).json( {data: result} );
     }
-)
+);
+
+// PUT >> Edit a document
+// input _id to find document?
+router.put(
+    "/",
+    async (req, res) => {
+        const dataToPut = req.body;
+
+        // docsModel.updateDoc(dataToPut);
+        const result = await docsModel.updateDoc(dataToPut);
+        return res.status(200).json( {data: result} );
+    }
+);
 
 module.exports = router;
