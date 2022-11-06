@@ -22,28 +22,39 @@ router.get(
 router.post(
     "/",
     async (req, res) => {
-        const newDoc = req.body;
+        const savedDoc = req.body;
+        const docs = await docsModel.getAllDocs();
+        var alreadyExists = false;
+         docs.forEach(async document => {
+            if (document.name == req.body.name) {
+                // User exists, overwrite document
+                console.log("found document....");
+                alreadyExists = true;
+                const result = await docsModel.updateDoc(req.body);
+                return res.status(200).json( {data: result} );
+            }
+        });
 
-        // console.log("req body in routes docs.js");
-        // console.log(req.body);
 
-        const result = await docsModel.insertDoc(newDoc);
-        
-        return res.status(201).json( {data: result} );
+        if (!alreadyExists) {
+            // New document
+            const result = await docsModel.insertDoc(savedDoc);
+            return res.status(201).json( {data: result} );
+        }
     }
 );
 
 // PUT >> Edit a document
-// input _id to find document?
-router.put(
-    "/",
-    async (req, res) => {
-        const dataToPut = req.body;
+// Unused, integrated into post for easier interaction
+// router.put(
+//     "/",
+//     async (req, res) => {
+//         const dataToPut = req.body;
 
-        // docsModel.updateDoc(dataToPut);
-        const result = await docsModel.updateDoc(dataToPut);
-        return res.status(200).json( {data: result} );
-    }
-);
+//         // docsModel.updateDoc(dataToPut);
+//         const result = await docsModel.updateDoc(dataToPut);
+//         return res.status(200).json( {data: result} );
+//     }
+// );
 
 module.exports = router;

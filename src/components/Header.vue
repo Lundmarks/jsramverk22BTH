@@ -5,6 +5,10 @@
             <img class="img" src="" alt="" />
             <a href="#" class="saveBtn" v-bind:class="saveButton" @click="saveText"> Save </a>
         </Nav>
+        <hr>
+        <p>Username</p>
+        <input type="text" v-model="name" placeholder="Enter a username" ref="nameField"/>
+        <br><br><hr>
     </div>
 </template>
 
@@ -22,11 +26,19 @@ export default {
     },
     methods: {
         saveText: function() {
-            var text = document.getElementsByClassName("ck-content")[0].querySelectorAll("p");
-            console.log(text[0].innerHTML);
-
-            // console.log("Logging docs..");
-            // console.log(docs.getAllDocs());
+            const docText = document.getElementsByClassName("ck-content")[0].querySelectorAll("p")[0].innerHTML;
+            const username = this.$refs.nameField.value;
+            // console.log("username: " + username);
+            // console.log("document text: " + docText);
+            const reqOptions = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: username, docContent: docText})
+            };
+            fetch("https://jsramverk-dottxt.azurewebsites.net/docs", reqOptions);
+                // .then(response => response.json());
+                // .then(data => (this.postId = data.id));
+            
         }
     },
     data() {

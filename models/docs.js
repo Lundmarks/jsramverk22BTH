@@ -76,22 +76,7 @@ const docs = {
             // print(e);
             console.log(e);
         }
-    },
-    // init: async function init() {
-    //     let db;
-
-    //     try {
-    //         db = await database.getDb();
-
-    //         const result = await db.collection.insertMany(initDocs);
-    //         console.log(`${result.insertedCount} documents were inserted`);
-
-    //     } catch (error) {
-    //         console.error(error.message);
-    //     } finally {
-    //         await db.client.close();
-    //     }
-    // }
+    }
 }
 
 

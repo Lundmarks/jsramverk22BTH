@@ -27,8 +27,6 @@ export default {
           return response.json();
       })
       .then(function(result) {
-        // console.log("FETCHED FROM API");
-        // console.log(result.data);
         that.docs = result.data;
       });
     }

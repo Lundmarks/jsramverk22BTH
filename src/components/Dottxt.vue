@@ -10,19 +10,12 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 export default {
     name: 'Dottxt',
-    components: {
-        // Nav,
-        // ckeditor: ClassicEditor.component
-    },
     data() {
         return {
-            // CKEditor
             // The configuration of the editor.
             editor: ClassicEditor,
             editorData: '<p>Text here..</p>',
-            editorConfig: {
-            //removePlugins: ['ImageToolbar', 'ImageUpload', 'MediaEmbed']
-            },
+            name: '',
         };
     }
 }
