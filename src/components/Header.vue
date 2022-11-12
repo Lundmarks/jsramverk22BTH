@@ -5,10 +5,11 @@
             <img class="img" src="" alt="" />
             <a href="#" class="saveBtn" v-bind:class="saveButton" @click="saveText"> Save </a>
         </Nav>
-        <hr>
+        <span v-html="loadingText"></span>
+        <hr><br>
         <p>Username</p>
         <input type="text" v-model="name" placeholder="Enter a username" ref="nameField"/>
-        <br><br><hr>
+        <br>
     </div>
 </template>
 
@@ -16,33 +17,42 @@
 import Nav from "vue-nav-ui"
 
 export default {
-    name: 'Dottxt',
+    name: 'Header',
     components: {
         Nav,
-        // ckeditor: ClassicEditor.component
     },
     props: {
         titleText: String
     },
     methods: {
-        saveText: function() {
-            const docText = document.getElementsByClassName("ck-content")[0].querySelectorAll("p")[0].innerHTML;
+        saveText: async function() {
+            const docText = this.$root.dottxtComponent.getEditorContent();
             const username = this.$refs.nameField.value;
-            // console.log("username: " + username);
-            // console.log("document text: " + docText);
             const reqOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name: username, docContent: docText})
             };
-            fetch("https://jsramverk-dottxt.azurewebsites.net/docs", reqOptions);
-                // .then(response => response.json());
-                // .then(data => (this.postId = data.id));
+            this.loadingText = '<p>Saving...</p>';
+            await fetch("https://jsramverk-dottxt.azurewebsites.net/docs", reqOptions);
+            this.$root.dottxtComponent.getDocs();
+            this.loadingText = '<p style="color:green">Saved!</p>';
+            setTimeout( () => {
+                this.loadingText = "";
+            }, 4000 )
             
-        }
+        },
+        setUsername: function(username) {
+            // Sets username, used when loading documents
+            this.$refs.nameField.value = username;
+        },
     },
     data() {
         return {
+            name: null,
+            saveButton: null,
+            navLinks: [],
+            loadingText: "",
             navConfig: {
                 whitespace: true, /* GIVES PADDING TO YOUR NAV, IF SET TO FALSE, REMOVES PADDING */
                 navBg: "#FAFAFA", /* BACKGROUND COLOR OF YOUR NAV  */
@@ -60,9 +70,12 @@ export default {
                 btnBorderWidth: "5", /* BORDER WIDTH OF YOUR NAV BUTTON */
                 btnBorderColor: "black", /* BORDER COLOR OF YOUR NAV BUTTON */
                 btnBorderRadius: "20px", /* BORDER RADIUS OF YOUR NAV BUTTON */
-            }
+            },
         };
-    }
+    },
+    created() {
+        this.$root.headerComponent = this;
+    },
 }
 </script>
 

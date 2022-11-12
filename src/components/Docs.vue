@@ -1,9 +1,9 @@
 <template>
   <h1> Saved documents</h1>
   <ul>
-     <li v-for="doc in docs" v-bind:key="doc._id">
-        {{ doc.name }}
-      </li>
+    <li v-for="doc in docs" v-bind:key="doc._id">
+        <a href="#" class="loadBtn" v-bind:class="loadBtn" @click="loadDocument(doc.name)"> {{doc.name}} </a>
+    </li>
   </ul>
 </template>
 
@@ -38,3 +38,13 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+a:hover {
+    background-color: #e8ffc6;
+    color: #3e8e34;
+    border-color: #51a372;
+}
+
+</style>

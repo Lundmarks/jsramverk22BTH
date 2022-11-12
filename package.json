@@ -11,8 +11,8 @@
     "production": "NODE_ENV='production' nodemon app.js"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^29.2.0",
-    "@ckeditor/ckeditor5-vue": "^2.0.1",
+    "@ckeditor/ckeditor5-build-classic": "^35.3.0",
+    "@ckeditor/ckeditor5-vue": "^4.0.1",
     "@vueup/vue-quill": "^1.0.0-beta.7",
     "bottom-navigation-vue": "^0.1.5",
     "core-js": "^3.6.5",

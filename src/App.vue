@@ -2,25 +2,23 @@
     <img alt="dottxt logo" src="./assets/dottxt.png">
     <Header titleText="Dottxt Text Editor"/>
     <Dottxt/>
-    <Docs/>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Dottxt from './components/Dottxt.vue'
-import Docs from './components/Docs.vue'
 
 export default {
     name: 'App',
     components: {
         Header,
         Dottxt,
-        Docs
+        // Docs
     },
     methods: {
-        saveText: function() {
-            alert('saveText');
-        }
+        // saveText: function() {
+        //     alert('saveText');
+        // }
     },
     data(){
         return {
