@@ -17,7 +17,7 @@ export default {
       // baseUrl: "https://jsramverk-dottxt.azurewebsites.net/",
     },
     mounted() {
-    this.getDocs();
+      this.getDocs();
   },
   methods: {
     getDocs() {
@@ -34,6 +34,7 @@ export default {
     data() {
         return {
           docs: null,
+          loadBtn: null
         };
     }
 }

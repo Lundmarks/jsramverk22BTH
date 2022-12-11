@@ -6,7 +6,9 @@
                 <a href="#" class="loadBtn" v-bind:class="loadBtn" @click="loadDocument(doc)"> {{doc.name}} </a>
             </li>
         </ul>
-        <ckeditor id="editor" :editor="editor" v-model="editorData"></ckeditor>
+        <div id="ckeditorContainer">
+            <ckeditor id="editor" :editor="editor" v-model="editorData"></ckeditor>
+        </div>
     </div>
 </template>
 
@@ -56,7 +58,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped insert="body">
 
 h1 {
     font-style: italic;

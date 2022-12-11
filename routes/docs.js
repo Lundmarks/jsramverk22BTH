@@ -28,7 +28,6 @@ router.post(
          docs.forEach(async document => {
             if (document.name == req.body.name) {
                 // User exists, overwrite document
-                console.log("found document....");
                 alreadyExists = true;
                 const result = await docsModel.updateDoc(req.body);
                 return res.status(200).json( {data: result} );
@@ -44,17 +43,5 @@ router.post(
     }
 );
 
-// PUT >> Edit a document
-// Unused, integrated into post for easier interaction
-// router.put(
-//     "/",
-//     async (req, res) => {
-//         const dataToPut = req.body;
-
-//         // docsModel.updateDoc(dataToPut);
-//         const result = await docsModel.updateDoc(dataToPut);
-//         return res.status(200).json( {data: result} );
-//     }
-// );
 
 module.exports = router;

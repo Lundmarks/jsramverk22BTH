@@ -31,17 +31,10 @@ app.use((req, res, next) => {
 ///////////
 
 const index = require('./routes/index');
-// const user = require('./routes/user');
-// const list = require('./routes/list');
 const docs = require('./routes/docs');
-// const dottxt = require('./routes/dottxt');
 
 app.use('/', index);
-// app.use('/user', user);
-// app.use('/list', list);
 app.use('/docs', docs);
-// app.use('/dottxt', dottxt);
-
 
 // Route for 404 and error handling
 app.use((req, res, next) => {

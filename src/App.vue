@@ -12,8 +12,7 @@ export default {
     name: 'App',
     components: {
         Header,
-        Dottxt,
-        // Docs
+        Dottxt
     },
     methods: {
         // saveText: function() {

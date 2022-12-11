@@ -1,5 +1,4 @@
 const database = require('../db/database');
-// const initDocs = require('../data/setup.json');
 
 const docs = {
     getAllDocs: async function getAllDocs() {
